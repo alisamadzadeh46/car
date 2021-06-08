@@ -17,3 +17,8 @@ def login(request):
 
 def register(request):
     return render(request, 'home/register.html')
+
+
+def about(request):
+    teams = Team.objects.all()
+    return render(request, 'home/about.html', {'teams': teams})
