@@ -81,9 +81,13 @@
             <div class="navbar-collapse collapse w-100" id="navbar">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="{% url 'home:home' %}" id="navbarDropdownMenuLink"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
+                        <a
+                                {% if '/' == request.path %}
+                                    class="nav-link dropdown-toggle active"
+                                {% else %}
+                                    class="nav-link dropdown-toggle"
+                                {% endif %}
+                                    href="{% url 'home:home' %}">
                             Home
                         </a>
                     </li>
@@ -105,7 +109,14 @@
 
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{% url 'home:contact' %}">Contact</a>
+                        <a
+                                {% if 'contact' in request.path %}
+                                    class="nav-link active"
+                                {% else %}
+                                    class="nav-link"
+                                {% endif %}
+
+                                    href="{% url 'home:contact' %}">Contact</a>
                     </li>
                     <li class="nav-item dropdown m-hide">
                         <a href="#full-page-search" class="nav-link h-icon">
