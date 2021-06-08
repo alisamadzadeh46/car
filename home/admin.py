@@ -6,3 +6,5 @@ from .models import *
 class TeamAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'designation', 'image']
     readonly_fields = ['image', ]
+    search_fields = ['first_name', 'last_name', 'designation']
+    list_filter = ['designation',]

@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 
 class Team(models.Model):
@@ -20,4 +20,4 @@ class Team(models.Model):
         return self.first_name + " " + self.last_name
 
     def image(self):
-        return mark_safe('<img src="{}" height="50"/>'.format(self.profile_image.url))
+        return format_html('<img src="{}" height="50" style="border-radius:50px;"/>'.format(self.profile_image.url))
