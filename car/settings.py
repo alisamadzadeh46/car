@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     # My app
     'home.apps.HomeConfig',
+    'cars.apps.CarsConfig',
 
 ]
 
