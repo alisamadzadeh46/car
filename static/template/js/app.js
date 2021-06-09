@@ -107,7 +107,7 @@ $(function () {
                     $('.sticky-header').addClass('header-shrink');
                 }
                 if ($('.do-sticky').length < 1) {
-                    $('.company-logo img').attr('src', 'img/logos/black-logo.png');
+                    $('.company-logo img').attr('src', '../static/template/img/logos/black-logo.png');
                 }
             } else {
                 $('.sticky-header').removeClass('header-shrink');
