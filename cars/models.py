@@ -110,13 +110,16 @@ class Cars(models.Model):
     is_featured = models.BooleanField(max_length=150, verbose_name='featured')
     created_data = models.DateTimeField(default=datetime.now, blank=True)
 
+    def cars_image(self):
+        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+
 
 class Images(models.Model):
-    product = models.ForeignKey(Cars, on_delete=models.CASCADE, verbose_name="Cars")
+    cars = models.ForeignKey(Cars, on_delete=models.CASCADE, verbose_name="Cars")
     name = models.CharField(max_length=50, blank=True, verbose_name="name")
     image = models.ImageField(blank=True, upload_to="cars/%Y/%m/%d/", verbose_name="image")
 
-    def image_tag(self):
+    def cars_image(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
 
     def __str__(self):
