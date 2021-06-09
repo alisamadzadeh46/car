@@ -22,3 +22,7 @@ def register(request):
 def about(request):
     teams = Team.objects.all()
     return render(request, 'home/about.html', {'teams': teams})
+
+
+def cars(request):
+    return render(request, 'home/cars.html')
