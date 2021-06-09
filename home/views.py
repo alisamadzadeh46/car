@@ -24,9 +24,5 @@ def about(request):
     return render(request, 'home/about.html', {'teams': teams})
 
 
-def cars(request):
-    return render(request, 'home/cars.html')
-
-
 def services(request):
     return render(request, 'home/services.html')

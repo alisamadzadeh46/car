@@ -1,4 +1,5 @@
 from django.shortcuts import render
 
+
 def cars(request):
-    return render(request,'home/cars.html')
+    return render(request, 'cars/cars.html')
