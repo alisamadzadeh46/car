@@ -26,3 +26,7 @@ def about(request):
 
 def cars(request):
     return render(request, 'home/cars.html')
+
+
+def services(request):
+    return render(request, 'home/services.html')

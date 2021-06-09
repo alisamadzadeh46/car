@@ -94,11 +94,11 @@
                     <li class="nav-item">
                         <a
                                 {% if 'cars' in request.path %}
-                           class="nav-link active"
+                                    class="nav-link active"
                                 {% else %}
-                           class="nav-link"
+                                    class="nav-link"
                                 {% endif %}
-                           href="{% url 'home:cars' %}">
+                                    href="{% url 'home:cars' %}">
                             Cars
                         </a>
                     </li>
@@ -114,7 +114,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="services.html">
+                        <a
+                                {% if 'services' in request.path %}
+                                    class="nav-link active"
+                                {% else %}
+                                    class="nav-link"
+                                {% endif %}
+
+                                    href="{% url 'home:services' %}">
                             Services
                         </a>
                     </li>
