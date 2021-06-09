@@ -107,7 +107,7 @@ class Cars(models.Model):
     mileage = models.IntegerField(verbose_name='mileage')
     fuel_type = models.CharField(max_length=150, verbose_name='fuel')
     owners = models.CharField(max_length=150, verbose_name='owners')
-    is_featured = models.BooleanField(max_length=150, verbose_name='featured')
+    is_featured = models.BooleanField(default=False,verbose_name='featured')
     created_data = models.DateTimeField(default=datetime.now, blank=True)
 
     class Meta:
