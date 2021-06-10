@@ -136,23 +136,18 @@
                                             <span> $ {{ featured_car.price }}</span>
                                         </div>
                                         <img class="d-block w-100" src="{{ featured_car.image.url }}"
-                                             alt="car">
+                                             alt="car" style="min-height: 262px;min-width: 262px;">
                                     </a>
                                     <div class="carbox-overlap-wrapper">
                                         <div class="overlap-box">
                                             <div class="overlap-btns-area">
                                                 <div class="car-magnify-gallery">
-                                                    {% for image in images %}
-                                                    <a href="{{ image.image.url }}"
+                                                    <a href="{{ featured_car.image.url }}"
                                                        class="overlap-btn">
                                                         <i class="fa fa-expand"></i>
                                                         <img class="hidden"
-                                                             src="{{ image.image.url }}">
+                                                             src="{{ featured_car.image.url }}">
                                                     </a>
-                                                    {% endfor %}
-
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -164,16 +159,17 @@
                                     </h1>
                                     <div class="location">
                                         <a href="car-details.html">
-                                            <i class="flaticon-pin"></i>123 Kathal St. Tampa City,
+                                            <i class="flaticon-pin"></i>{{ featured_car.state }}
+                                            , {{ featured_car.city }}
                                         </a>
                                     </div>
                                     <ul class="facilities-list clearfix">
-                                        <li>Petrol</li>
-                                        <li>4,000 km</li>
-                                        <li>Manual</li>
-                                        <li>Sport</li>
-                                        <li>white</li>
-                                        <li>2020</li>
+                                        <li>{{ featured_car.fuel_type }}</li>
+                                        <li>{{ featured_car.miles }} km</li>
+                                        <li>{{ featured_car.transmission }}</li>
+                                        <li>{{ featured_car.body_style }}</li>
+                                        <li>{{ featured_car.color }}</li>
+                                        <li>{{ featured_car.year }}</li>
                                     </ul>
                                 </div>
                             </div>
