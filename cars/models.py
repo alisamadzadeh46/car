@@ -119,7 +119,7 @@ class Cars(models.Model):
         verbose_name_plural = 'Cars'
 
     def cars_image(self):
-        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+        return mark_safe('<img src="{}" height="50" style="border-radius:50px;"/>'.format(self.image.url))
 
 
 class Images(models.Model):
