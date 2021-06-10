@@ -7,7 +7,15 @@ from .models import *
 def home(request):
     teams = Team.objects.all()
     featured_cars = Cars.objects.order_by('-created_data').filter(is_featured=True)
-    return render(request, 'home/index.html', {'teams': teams, 'featured_cars': featured_cars})
+    latest_cars = Cars.objects.order_by('-created_data')
+
+    data = {
+        'teams': teams,
+        'featured_cars': featured_cars,
+        'latest_cars': latest_cars,
+
+    }
+    return render(request, 'home/index.html', data)
 
 
 def contact(request):
