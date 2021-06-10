@@ -9,11 +9,12 @@ class CarsImageInline(admin.TabularInline):
 
 @admin.register(Cars)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['car_name', 'state', 'city', 'year', 'cars_image']
+    list_display = ['car_name', 'state', 'city', 'year', 'cars_image','is_featured']
     list_filter = ['car_name', 'state', 'city', 'year', 'price', 'fuel_type']
     readonly_fields = ('cars_image',)
     inlines = [CarsImageInline]
     search_fields = ['car_name', 'state', 'city', 'year', 'price', 'fuel_type']
+    list_editable = ('is_featured',)
 
 
 @admin.register(Images)

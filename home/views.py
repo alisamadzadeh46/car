@@ -1,10 +1,14 @@
 from django.shortcuts import render
+
+from cars.models import Cars, Images
 from .models import *
 
 
 def home(request):
     teams = Team.objects.all()
-    return render(request, 'home/index.html', {'teams': teams})
+    featured_cars = Cars.objects.order_by('-created_data').filter(is_featured=True)
+    images = Images.objects.all()
+    return render(request, 'home/index.html', {'teams': teams, 'featured_cars': featured_cars, 'images': images})
 
 
 def contact(request):
