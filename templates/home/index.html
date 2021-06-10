@@ -1,5 +1,6 @@
 {% extends 'home/base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %} home {% endblock %}
 {% block content %}
 
@@ -133,7 +134,7 @@
                                     <a href="car-details.html" class="car-img">
                                         <div class="tag-2">Featured</div>
                                         <div class="price-box">
-                                            <span> $ {{ featured_car.price }}</span>
+                                            <span> $ {{ featured_car.price | intcomma }}</span>
                                         </div>
                                         <img class="d-block w-100" src="{{ featured_car.image.url }}"
                                              alt="car" style="min-height: 262px;min-width: 262px;">
@@ -165,7 +166,7 @@
                                     </div>
                                     <ul class="facilities-list clearfix">
                                         <li>{{ featured_car.fuel_type }}</li>
-                                        <li>{{ featured_car.miles }} km</li>
+                                        <li>{{ featured_car.miles | intcomma }} km</li>
                                         <li>{{ featured_car.transmission }}</li>
                                         <li>{{ featured_car.body_style }}</li>
                                         <li>{{ featured_car.color }}</li>
@@ -209,7 +210,7 @@
                                     <div class="facilities-list clearfix">
                                         <ul>
                                             <li>
-                                                <span><i class="flaticon-way"></i></span>{{ latest_car.miles }} km
+                                                <span><i class="flaticon-way"></i></span>{{ latest_car.miles | intcomma }} km
                                             </li>
                                             <li>
                                                 <span><i class="flaticon-calendar-1"></i></span>{{ latest_car.year }}
@@ -249,7 +250,7 @@
                                     <p class="cartype">{{ latest_car.body_style }}</p>
                                 </div>
                                 <div class="pull-right">
-                                    <p class="price">$ {{ latest_car.price }}</p>
+                                    <p class="price">$ {{ latest_car.price | intcomma }}</p>
                                 </div>
                             </div>
                         </div>
