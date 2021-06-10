@@ -96,7 +96,7 @@ class Cars(models.Model):
     price = models.IntegerField(verbose_name='price')
     description = RichTextUploadingField(verbose_name='description')
     image = models.ImageField(blank=False, null=False, upload_to="cars/%Y/%m/%d/")
-    features = MultiSelectField(choices=features_choices,verbose_name='features')
+    features = MultiSelectField(choices=features_choices, verbose_name='features')
     body_style = models.CharField(max_length=100, verbose_name='body style')
     engine = models.CharField(max_length=100, verbose_name='engine')
     transmission = models.CharField(max_length=100, verbose_name='transmission')
@@ -110,6 +110,9 @@ class Cars(models.Model):
     owners = models.CharField(max_length=150, verbose_name='owners')
     is_featured = models.BooleanField(default=False, verbose_name='featured')
     created_data = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return self.car_name
 
     class Meta:
         verbose_name = 'Cars'
