@@ -2,6 +2,7 @@ from datetime import datetime
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils.safestring import mark_safe
+from multiselectfield import MultiSelectField
 
 
 class Cars(models.Model):
@@ -95,7 +96,7 @@ class Cars(models.Model):
     price = models.IntegerField(verbose_name='price')
     description = RichTextUploadingField(verbose_name='description')
     image = models.ImageField(blank=False, null=False, upload_to="cars/%Y/%m/%d/")
-    features = models.CharField(choices=features_choices, max_length=150, verbose_name='features')
+    features = MultiSelectField(choices=features_choices,verbose_name='features')
     body_style = models.CharField(max_length=100, verbose_name='body style')
     engine = models.CharField(max_length=100, verbose_name='engine')
     transmission = models.CharField(max_length=100, verbose_name='transmission')
@@ -103,11 +104,11 @@ class Cars(models.Model):
     miles = models.IntegerField(verbose_name='miles')
     doors = models.CharField(choices=door_choices, max_length=150, verbose_name='doors')
     passengers = models.IntegerField(verbose_name='passengers')
-    vin_no = models.CharField(max_length=150, verbose_name='doors')
+    vin_no = models.CharField(max_length=150, verbose_name='vin')
     mileage = models.IntegerField(verbose_name='mileage')
     fuel_type = models.CharField(max_length=150, verbose_name='fuel')
     owners = models.CharField(max_length=150, verbose_name='owners')
-    is_featured = models.BooleanField(default=False,verbose_name='featured')
+    is_featured = models.BooleanField(default=False, verbose_name='featured')
     created_data = models.DateTimeField(default=datetime.now, blank=True)
 
     class Meta:
