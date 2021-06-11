@@ -1,13 +1,14 @@
 {% extends 'home/base.html' %}
 {% block title %} cars detail {% endblock %}
+{% load humanize %}
 {% block content %}
     <div class="sub-banner overview-bgi">
         <div class="container breadcrumb-area">
             <div class="breadcrumb-areas">
-                <h1>LAMBORGHINI HURACÁN</h1>
+                <h1>{{ car.car_name }}</h1>
                 <ul class="breadcrumbs">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active">LAMBORGHINI HURACÁN</li>
+                    <li><a href="{% url 'home:home' %}">Home</a></li>
+                    <li class="active">{{ car.car_name }}</li>
                 </ul>
             </div>
         </div>
@@ -23,63 +24,35 @@
                         <!-- Heading start -->
                         <div class="heading-car clearfix">
                             <div class="pull-left">
-                                <h3>Lamborghini Huracán</h3>
+                                <h3>{{ car.car_name }}</h3>
                                 <h6>
-                                    <i class="flaticon-pin"></i>123 Kathal St. Tampa City,
+                                    <i class="flaticon-pin"></i>{{ car.state }} , {{ car.city }}
                                 </h6>
                             </div>
                             <div class="pull-right">
-                                <h3><span>$2825.00</span></h3>
+                                <h3><span>${{ car.price | intcomma }}</span></h3>
                             </div>
                         </div>
                         <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-40">
                             <!-- main slider carousel items -->
                             <div class="carousel-inner">
-                                <div class="active item carousel-item" data-slide-number="0">
-                                    <img src="img/car/car-1.jpg" class="img-fluid" alt="slider-car">
-                                </div>
-                                <div class="item carousel-item" data-slide-number="1">
-                                    <img src="img/car/car-2.jpg" class="img-fluid" alt="slider-car">
-                                </div>
-                                <div class="item carousel-item" data-slide-number="2">
-                                    <img src="img/car/car-3.jpg" class="img-fluid" alt="slider-car">
-                                </div>
-                                <div class="item carousel-item" data-slide-number="4">
-                                    <img src="img/car/car-4.jpg" class="img-fluid" alt="slider-car">
-                                </div>
-                                <div class="item carousel-item" data-slide-number="5">
-                                    <img src="img/car/car-5.jpg" class="img-fluid" alt="slider-car">
-                                </div>
+{#                                {% for image in images %}#}
+{#                                    <div class="item carousel-item active">#}
+{#                                        <img src="{{ image.image.url }}" class="img-fluid" alt="slider-car">#}
+{#                                    </div>#}
+{#                                {% endfor %}#}
                             </div>
                             <!-- main slider carousel nav controls -->
                             <div class="carousel-indicators-section clearfix">
                                 <ul class="carousel-indicators car-properties list-inline nav nav-justified">
-                                    <li class="list-inline-item active">
-                                        <a id="carousel-selector-0" class="selected" data-slide-to="0"
-                                           data-target="#carDetailsSlider">
-                                            <img src="img/car/car-1.jpg" class="img-fluid" alt="small-car">
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a id="carousel-selector-1" data-slide-to="1" data-target="#carDetailsSlider">
-                                            <img src="img/car/car-2.jpg" class="img-fluid" alt="small-car">
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a id="carousel-selector-2" data-slide-to="2" data-target="#carDetailsSlider">
-                                            <img src="img/car/car-3.jpg" class="img-fluid" alt="small-car">
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a id="carousel-selector-3" data-slide-to="3" data-target="#carDetailsSlider">
-                                            <img src="img/car/car-4.jpg" class="img-fluid" alt="small-car">
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a id="carousel-selector-4" data-slide-to="4" data-target="#carDetailsSlider">
-                                            <img src="img/car/car-5.jpg" class="img-fluid" alt="small-car">
-                                        </a>
-                                    </li>
+{#                                    {% for image in images %}#}
+{#                                        <li class="list-inline-item">#}
+{#                                            <a id="carousel-selector-4"#}
+{#                                               data-target="#carDetailsSlider">#}
+{#                                                <img src="{{ image.image.url }}" class="img-fluid" alt="small-car">#}
+{#                                            </a>#}
+{#                                        </li>#}
+{#                                    {% endfor %}#}
                                 </ul>
                             </div>
                         </div>
