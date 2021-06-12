@@ -4,7 +4,11 @@ from .models import Cars, Images
 
 
 def cars(request):
-    return render(request, 'cars/cars.html')
+    car = Cars.objects.order_by('-created_data')
+    data = {
+        'car': car,
+    }
+    return render(request, 'cars/cars.html', data)
 
 
 def car_detail(request, id):
