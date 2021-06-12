@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
 from .models import Cars, Images
@@ -5,8 +6,11 @@ from .models import Cars, Images
 
 def cars(request):
     car = Cars.objects.order_by('-created_data')
+    paginator = Paginator(car, 1)
+    page = request.GET.get('page')
+    paged_cars = paginator.get_page(page)
     data = {
-        'car': car,
+        'car': paged_cars,
     }
     return render(request, 'cars/cars.html', data)
 
