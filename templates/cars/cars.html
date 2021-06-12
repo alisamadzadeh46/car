@@ -62,12 +62,12 @@
                                             </a>
                                         </div>
                                         <ul class="facilities-list clearfix">
-                                        <li>{{ foo.fuel_type }}</li>
-                                        <li>{{ foo.miles | intcomma }} im</li>
-                                        <li>{{ foo.transmission }}</li>
-                                        <li>{{ foo.body_style }}</li>
-                                        <li>{{ foo.color }}</li>
-                                        <li>{{ foo.year }}</li>
+                                            <li>{{ foo.fuel_type }}</li>
+                                            <li>{{ foo.miles | intcomma }} im</li>
+                                            <li>{{ foo.transmission }}</li>
+                                            <li>{{ foo.body_style }}</li>
+                                            <li>{{ foo.color }}</li>
+                                            <li>{{ foo.year }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -77,17 +77,41 @@
                     <!-- Page navigation start -->
                     <div class="pagination-box p-box-2 text-center">
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                </li>
-                            </ul>
+                            {% if car.has_other_pages %}
+                                <ul class="pagination">
+                                    {% if car.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ car.previous_page_number }}"><i
+                                                    class="fa fa-angle-left"></i></a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link"><i class="fa fa-angle-left"></i></a>
+                                        </li>
+                                    {% endif %}
+                                    {% for page in car.paginator.page_range %}
+                                        {% if car.number == page %}
+                                            <li class="page-item"><a class="page-link active" href="#">{{ page }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                            </li>
+                                        {% endif %}
+
+                                    {% endfor %}
+
+                                     {% if car.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ car.next_page_number }}"><i
+                                                    class="fa fa-angle-right"></i></a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link"><i class="fa fa-angle-right"></i></a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
                         </nav>
                     </div>
                 </div>
