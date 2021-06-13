@@ -28,6 +28,10 @@ def car_detail(request, id):
 
 def search(request):
     car = Cars.objects.order_by('-created_data')
+    if 'q' in request.GET:
+        q = request.GET['q']
+        if q:
+            car = car.filter(car_name__icontains=q)
     data = {
         'car': car,
     }
