@@ -24,3 +24,7 @@ def car_detail(request, id):
         'images': images,
     }
     return render(request, 'cars/detail.html', data)
+
+
+def search(request):
+    return render(request, 'home/search.html')

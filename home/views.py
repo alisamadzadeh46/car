@@ -37,3 +37,6 @@ def about(request):
 
 def services(request):
     return render(request, 'home/services.html')
+
+
+
