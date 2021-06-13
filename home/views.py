@@ -8,11 +8,13 @@ def home(request):
     teams = Team.objects.all()
     featured_cars = Cars.objects.order_by('-created_data').filter(is_featured=True)
     latest_cars = Cars.objects.order_by('-created_data')
+    search_fields = Cars.objects.values('model', 'city', 'year', 'body_style')
 
     data = {
         'teams': teams,
         'featured_cars': featured_cars,
         'latest_cars': latest_cars,
+        'search_fields': search_fields,
 
     }
     return render(request, 'home/index.html', data)
@@ -37,6 +39,3 @@ def about(request):
 
 def services(request):
     return render(request, 'home/services.html')
-
-
-
