@@ -44,8 +44,8 @@
                     <div class="form-group">
                         <select class="form-control search-fields" name="select-make">
                             <option selected="true" disabled="disabled">Model</option>
-                            {% for search_field in search_fields %}
-                                <option value="{{ search_field.model }}">{{ search_field.model }}</option>
+                            {% for search_field in model_search %}
+                                <option value="{{ search_field }}">{{ search_field }}</option>
                             {% endfor %}
 
                         </select>
@@ -53,24 +53,24 @@
                     <div class="form-group">
                         <select class="form-control search-fields" name="select-location">
                             <option selected="true" disabled="disabled">Location</option>
-                            {% for search_field in search_fields %}
-                                <option value="{{ search_field.city }}">{{ search_field.city }}</option>
+                            {% for search_field in city_search %}
+                                <option value="{{ search_field }}">{{ search_field }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-control search-fields" name="select-year">
                             <option selected="true" disabled="disabled">Year</option>
-                            {% for search_field in search_fields %}
-                                <option value="{{ search_field.year }}">{{ search_field.year }}</option>
+                            {% for search_field in year_search %}
+                                <option value="{{ search_field }}">{{ search_field }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-control search-fields" name="select-type">
                             <option selected="true" disabled="disabled">Select Type Of Car</option>
-                            {% for search_field in search_fields %}
-                                <option value="{{ search_field.body_style }}">{{ search_field.body_style }}</option>
+                            {% for search_field in body_style_search %}
+                                <option value="{{ search_field }}">{{ search_field }}</option>
                             {% endfor %}
                         </select>
                     </div>
