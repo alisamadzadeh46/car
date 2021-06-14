@@ -40,6 +40,7 @@ def search(request):
     city_search = Cars.objects.values_list('city', flat=True).distinct()
     year_search = Cars.objects.values_list('year', flat=True).distinct()
     body_style_search = Cars.objects.values_list('body_style', flat=True).distinct()
+    transmission_search = Cars.objects.values_list('transmission', flat=True).distinct()
     if 'q' in request.GET:
         q = request.GET['q']
         if q:
@@ -71,11 +72,17 @@ def search(request):
         if max_price:
             car = car.filter(price__gte=min_price, price__lte=max_price)
 
+    if 'transmission' in request.GET:
+        transmission = request.GET['transmission']
+        if transmission:
+            car = car.filter(transmission__iexact=transmission)
+
     data = {
         'car': car,
         'model_search': model_search,
         'city_search': city_search,
         'year_search': year_search,
         'body_style_search': body_style_search,
+        'transmission_search': transmission_search,
     }
     return render(request, 'cars/search.html', data)
