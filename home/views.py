@@ -31,11 +31,11 @@ def contact(request):
 
 
 def login(request):
-    return render(request, 'home/login.html')
+    return render(request, 'home/../templates/account/login.html')
 
 
 def register(request):
-    return render(request, 'home/register.html')
+    return render(request, 'home/../templates/account/register.html')
 
 
 def about(request):
