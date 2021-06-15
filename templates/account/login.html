@@ -28,7 +28,7 @@
                         </div>
                         <h3>Sign into your account</h3>
                         {% include 'home/messages.html' %}
-                        <form action="{% url 'account:login' %}" method="POST">
+                        <form action="{% url 'accounts:login' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group form-box">
                                 <input type="text" name="username" class="input-text" placeholder="Username"
@@ -54,7 +54,7 @@
                                         class="fa fa-google google-i"></i><span>Google</span></a></li>
                             </ul>
                         </form>
-                        <p>Don't have an account? <a href="{% url 'home:register' %}" class="thembo"> Register here</a>
+                        <p>Don't have an account? <a href="{% url 'accounts:register' %}" class="thembo"> Register here</a>
                         </p>
                     </div>
                 </div>

@@ -37,16 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
 
     # 3rd party apps
     'ckeditor',
     'ckeditor_uploader',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # My app
     'home.apps.HomeConfig',
     'cars.apps.CarsConfig',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountConfig',
 
+    # Providers
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [

@@ -14,21 +14,21 @@ def register(request):
         if password == confirm_password:
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists!')
-                return redirect('account:register')
+                return redirect('accounts:register')
             else:
                 if User.objects.filter(email=email).exists():
                     messages.error(request, 'Email already exists!')
-                    return redirect('account:register')
+                    return redirect('accounts:register')
                 else:
                     user = User.objects.create_user(first_name=firstname, last_name=lastname, username=username,
                                                     email=email,
                                                     password=password)
                     user.save()
                     messages.success(request, 'You are registered successfully. please login')
-                    return redirect('account:login')
+                    return redirect('accounts:login')
         else:
             messages.error(request, 'Password do not match')
-            return redirect('account:register')
+            return redirect('accounts:register')
 
     else:
         return render(request, 'account/register.html')
@@ -42,10 +42,10 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You are now logged in.')
-            return redirect('account:dashboard')
+            return redirect('accounts:dashboard')
         else:
             messages.error(request, 'Invalid login credentials')
-            return redirect('account:login')
+            return redirect('accounts:login')
     return render(request, 'account/login.html')
 
 
@@ -54,4 +54,7 @@ def dashboard(request):
 
 
 def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect('home:home')
     return redirect('home:home')
