@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def register(request):
@@ -11,3 +11,7 @@ def login(request):
 
 def dashboard(request):
     return render(request, 'account/dashboard.html')
+
+
+def logout(request):
+    return redirect('home:home')
