@@ -27,7 +27,7 @@
 }
 
 .selector-chosen h2 {
-    background: var(--primary);
+    background: #000000;
     color: var(--header-link-color);
 }
 
