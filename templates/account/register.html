@@ -1,6 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
 {% block title %} register {% endblock %}
+
 {% block content %}
     <div class="sub-banner overview-bgi">
         <div class="container breadcrumb-area">
@@ -26,30 +27,31 @@
                             </a>
                         </div>
                         <h3>Create an account</h3>
-                        <form action="#" method="GET">
+                        {% include 'home/messages.html' %}
+                        <form action="{% url 'account:register' %}" method="POST"> {% csrf_token %}
                             <div class="form-group form-box">
-                                <input type="text" name="firstname" class="input-text" placeholder="First Name">
+                                <input type="text" name="firstname" class="input-text" placeholder="First Name" required>
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="form-group form-box">
-                                <input type="text" name="lastname" class="input-text" placeholder="Last Name">
+                                <input type="text" name="lastname" class="input-text" placeholder="Last Name" required>
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="form-group form-box">
-                                <input type="text" name="username" class="input-text" placeholder="Username">
+                                <input type="text" name="username" class="input-text" placeholder="Username" required>
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="form-group form-box">
-                                <input type="email" name="email" class="input-text" placeholder="Email Address">
+                                <input type="email" name="email" class="input-text" placeholder="Email Address" required>
                                 <i class="flaticon-mail"></i>
                             </div>
                             <div class="form-group form-box">
-                                <input type="password" name="password" class="input-text" placeholder="Password">
+                                <input type="password" name="password" class="input-text" placeholder="Password" required>
                                 <i class="flaticon-lock"></i>
                             </div>
                             <div class="form-group form-box">
                                 <input type="password" name="confirm_password" class="input-text"
-                                       placeholder="Confirm Password">
+                                       placeholder="Confirm Password" required>
                                 <i class="flaticon-lock"></i>
                             </div>
                             <div class="form-group mb-0 clearfix">
