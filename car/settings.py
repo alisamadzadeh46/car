@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-8&xper7rz_j)$6tu%f3w+k8h^tx99e!66obx)vqiwn&-%7pc^y
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_REDIRECT_URL = 'accounts:dashboard'
 
 # Application definition
 
