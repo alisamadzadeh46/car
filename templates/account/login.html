@@ -27,6 +27,7 @@
                             </a>
                         </div>
                         <h3>Sign into your account</h3>
+                        {% include 'home/messages.html' %}
                         <form action="{% url 'account:login' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group form-box">
