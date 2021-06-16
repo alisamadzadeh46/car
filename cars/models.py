@@ -136,3 +136,21 @@ class Images(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Message(models.Model):
+    first_name = models.CharField(max_length=200, verbose_name='first name')
+    last_name = models.CharField(max_length=200, verbose_name='last name')
+    car = models.IntegerField(verbose_name='car id')
+    customer_need = models.CharField(max_length=200, verbose_name='customer need')
+    car_title = models.CharField(max_length=200, verbose_name='car title')
+    city = models.CharField(max_length=200, verbose_name='city')
+    state = models.CharField(max_length=200, verbose_name='state')
+    email = models.EmailField(max_length=200, verbose_name='email')
+    phone = models.CharField(max_length=200, verbose_name='phone')
+    message = models.TextField(max_length=200, verbose_name='message')
+    user_id = models.IntegerField(blank=True, verbose_name='user id')
+    create_data = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
