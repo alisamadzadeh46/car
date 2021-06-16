@@ -204,11 +204,11 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <input type="text" name="first_name" class="form-control"
-                                                                   placeholder="First Name" required>
+                                                                   placeholder="First Name" required value="{{ user.first_name }}">
                                                         </div>
                                                         <div class="col">
                                                             <input type="text" name="last_name" class="form-control"
-                                                                   placeholder="Last Name" required>
+                                                                   placeholder="Last Name" required  value="{{ user.first_name }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -255,7 +255,7 @@
                                                             <label for="name" class="col-form-label">You can reach me by
                                                                 email at</label>
                                                             <input type="email" name="email" class="form-control"
-                                                                   placeholder="Email Address" required>
+                                                                   placeholder="Email Address" required value="{{ user.email }}">
                                                         </div>
                                                         <div class="col">
                                                             <label for="phone" class="col-form-label">or by phone
@@ -276,11 +276,12 @@
                                                 <input type="submit" value="Send" class="btn btn-block btn-danger">
                                             </form>
                                         </div>
+
                                     {% else %}
                                         <h5> please login or register</h5>
                                     {% endif %}
 
-                                </div>
+
                             </div>
                         </div>
                         <!-- Question start -->
