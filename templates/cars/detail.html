@@ -194,11 +194,16 @@
                                             {% csrf_token %}
                                             {% if user.is_authenticated %}
                                                 <input type="hidden" name="user_id" value="{{ user.id }}">
-                                            {% elif %}
+                                            {% else %}
                                                 <input type="hidden" name="user_id" value="not authenticated">
                                             {% endif %}
                                             <div class="form-group">
-                                                <label for="name" class="col-form-label">Hello, My Name is</label>
+                                                {% if user.is_authenticated %}
+                                                  <label for="name" class="col-form-label">Hello, {{ user.username }}</label>
+                                                {% else %}
+                                                     <label for="name" class="col-form-label">Hello, guest </label>
+                                                {% endif %}
+
                                                 <div class="row">
                                                     <div class="col">
                                                         <input type="text" name="first_name" class="form-control"
