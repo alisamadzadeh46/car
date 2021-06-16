@@ -141,7 +141,7 @@ class Images(models.Model):
 class Message(models.Model):
     first_name = models.CharField(max_length=200, verbose_name='first name')
     last_name = models.CharField(max_length=200, verbose_name='last name')
-    car = models.IntegerField(verbose_name='car id')
+    car = models.ForeignKey(Cars, related_name='cars', verbose_name='car id', on_delete=models.CASCADE)
     customer_need = models.CharField(max_length=200, verbose_name='customer need')
     car_title = models.CharField(max_length=200, verbose_name='car title')
     city = models.CharField(max_length=200, verbose_name='city')
