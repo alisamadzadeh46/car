@@ -21,3 +21,14 @@ class Team(models.Model):
 
     def image(self):
         return format_html('<img src="{}" height="50" style="border-radius:50px;"/>'.format(self.profile_image.url))
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200, verbose_name='name')
+    email = models.EmailField(verbose_name='email')
+    subject = models.CharField(max_length=200, verbose_name='subject')
+    phone = models.CharField(max_length=30, verbose_name='phone')
+    message = models.TextField(verbose_name='message')
+
+    def __str__(self):
+        return self.name
