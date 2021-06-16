@@ -1,6 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
+
+from cars.models import Message
 
 
 def register(request):
@@ -49,8 +52,13 @@ def login(request):
     return render(request, 'account/login.html')
 
 
+@login_required(login_url='accounts:login')
 def dashboard(request):
-    return render(request, 'account/dashboard.html')
+    message = Message.objects.order_by('-create_data').filter(user_id=request.user.id)
+    data = {
+        'message': message,
+    }
+    return render(request, 'account/dashboard.html', data)
 
 
 def logout(request):

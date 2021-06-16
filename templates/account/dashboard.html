@@ -2,78 +2,60 @@
 {% load static %}
 {% block title %} dashboard {% endblock %}
 {% block content %}
-    {% if user.is_authenticated %}
-        <div class="sub-banner overview-bgi">
-            <div class="container breadcrumb-area">
-                <div class="breadcrumb-areas">
-                    <h1>Dashboard</h1>
-                    <ul class="breadcrumbs">
-                        <li><a href="{% url 'home:home' %}">Home</a></li>
-                        <li class="active">Username</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-50 mb-50">
-            <div class="main-title" style="text-align:left !important;">
-                <h1>Welcome <span> {{ user.username }} </span></h1>
-                {% include 'home/messages.html' %}
-                <p>Here are the cars that you have inquired about</p>
-            </div>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Car Name</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Lamborgini Huracan</td>
-                    <td>Austin</td>
-                    <td>$25000</td>
-                    <td><a href="#" class="btn btn-outline-dark">View Car</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Lamborgini Huracan</td>
-                    <td>Austin</td>
-                    <td>$25000</td>
-                    <td><a href="#" class="btn btn-outline-dark">View Car</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Lamborgini Huracan</td>
-                    <td>Austin</td>
-                    <td>$25000</td>
-                    <td><a href="#" class="btn btn-outline-dark">View Car</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="sub-banner overview-bgi">
-            <div class="container breadcrumb-area">
-                <div class="breadcrumb-areas">
-                    <h1>Dashboard</h1>
-                    <ul class="breadcrumbs">
-                        <li><a href="{% url 'home:home' %}">Home</a></li>
-                        <li class="active">Error</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-50 mb-50">
-            <div class="main-title" style="text-align:left !important;">
-                <h1> <span> Error </span></h1>
-                <p> Please login or register </p>
-            </div>
 
+    <div class="sub-banner overview-bgi">
+        <div class="container breadcrumb-area">
+            <div class="breadcrumb-areas">
+                <h1>Dashboard</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'home:home' %}">Home</a></li>
+                    <li class="active">Username</li>
+                </ul>
+            </div>
         </div>
-    {% endif %}
+    </div>
+    <div class="container mt-50 mb-50">
+        <div class="main-title" style="text-align:left !important;">
+            <h1>Welcome <span> {{ user.username }} </span></h1>
+            {% include 'home/messages.html' %}
+            <p>Here are the cars that you have inquired about</p>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Car Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% if message %}
+                    {% for mess in message %}
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ mess.car_name }}</td>
+                        <td>{{ mess.city }}</td>
+                        <td>{{ mess.price }}</td>
+                        <td><a href="{% url 'cars:car_detail' mess.car_id %}" class="btn btn-outline-dark">View Car</a>
+                        </td>
+                    {% endfor %}
+
+                {% else %}
+                    <h4>
+                        You have no message.
+                    </h4>
+
+                {% endif %}
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
 
 {% endblock %}
