@@ -192,11 +192,11 @@
                                     <div class="modal-body">
                                         <form action="{% url 'cars:car_detail' car.id %}" method="post">
                                             {% csrf_token %}
-                                            {% if user.is_authenticated %}
-                                                <input type="hidden" name="user_id" value="{{ user.id }}">
-                                            {% else %}
-                                                <input type="hidden" name="user_id" value="not authenticated">
-                                            {% endif %}
+{#                                            {% if user.is_authenticated %}#}
+{#                                                <input type="hidden" name="user_id" value="{{ user.id }}">#}
+{#                                            {% else %}#}
+{#                                                <input type="hidden" name="user_id" value="not authenticated">#}
+{#                                            {% endif %}#}
                                             <div class="form-group">
                                                 {% if user.is_authenticated %}
                                                   <label for="name" class="col-form-label">Hello, {{ user.username }}</label>
@@ -232,7 +232,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" name="car_title" class="form-control"
+                                                <input type="text" name="car_name" class="form-control"
                                                        value="{{ car.car_name }}" readonly>
                                             </div>
 

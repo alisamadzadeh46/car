@@ -144,7 +144,7 @@ class Message(models.Model):
     last_name = models.CharField(max_length=200, verbose_name='last name')
     car = models.ForeignKey(Cars, related_name='cars', verbose_name='car id', on_delete=models.CASCADE)
     customer_need = models.CharField(max_length=200, verbose_name='customer need')
-    car_title = models.CharField(max_length=200, verbose_name='car title')
+    car_name = models.CharField(max_length=200, verbose_name='car name')
     city = models.CharField(max_length=200, verbose_name='city')
     state = models.CharField(max_length=200, verbose_name='state')
     email = models.EmailField(max_length=200, verbose_name='email')

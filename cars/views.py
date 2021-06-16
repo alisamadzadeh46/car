@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
-
-from .models import Cars, Images
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from .models import Cars, Images, Message
 
 
 def cars(request):
@@ -31,6 +31,26 @@ def car_detail(request, id):
         'car': car,
         'images': images,
     }
+    if request.method == 'POST':
+        car = get_object_or_404(Cars, pk=id)
+        car_name = request.POST['car_name']
+        user = request.user.id
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        customer_need = request.POST['customer_need']
+        city = request.POST['city']
+        state = request.POST['state']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        message = request.POST['message']
+
+        message = Message(car=car, car_name=car_name, user_id=user, first_name=first_name, last_name=last_name,
+                          customer_need=customer_need, city=city, state=state, email=email, phone=phone,
+                          message=message)
+        message.save()
+        messages.success(request, 'Your request has been submitted, we will get back to you shortly')
+        return redirect('cars:cars')
+
     return render(request, 'cars/detail.html', data)
 
 
