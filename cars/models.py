@@ -1,5 +1,6 @@
 from datetime import datetime
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.safestring import mark_safe
 from multiselectfield import MultiSelectField
@@ -149,7 +150,7 @@ class Message(models.Model):
     email = models.EmailField(max_length=200, verbose_name='email')
     phone = models.CharField(max_length=200, verbose_name='phone')
     message = models.TextField(max_length=200, verbose_name='message')
-    user_id = models.IntegerField(blank=True, verbose_name='user id')
+    user = models.ForeignKey(User, blank=True, verbose_name='user', on_delete=models.CASCADE)
     create_data = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
