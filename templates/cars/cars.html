@@ -120,6 +120,7 @@
                     <div class="sidebar-right">
                         <!-- Advanced search start -->
                         <div class="widget advanced-search2">
+                        {% include 'home/messages.html' %}
                             <h3 class="sidebar-title">Search your desire car</h3>
                             <form method="GET" action="{% url 'cars:search' %}">
                                 <div class="form-group">
