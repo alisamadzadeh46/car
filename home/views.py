@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from cars.models import Cars, Images
 from .models import *
@@ -37,6 +37,7 @@ def contact(request):
         con = Contact(name=name, email=email, subject=subject, phone=phone, message=message)
         con.save()
         messages.success(request, 'Thank you')
+        return redirect('home:contact')
     return render(request, 'home/contact.html')
 
 
