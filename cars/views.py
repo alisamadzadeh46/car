@@ -43,13 +43,17 @@ def car_detail(request, id):
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
-
-        message = Message(car=car, car_name=car_name, user_id=user, first_name=first_name, last_name=last_name,
-                          customer_need=customer_need, city=city, state=state, email=email, phone=phone,
-                          message=message)
-        message.save()
-        messages.success(request, 'Your request has been submitted, we will get back to you shortly')
-        return redirect('cars:cars')
+        has_message = Message.objects.filter(car_id=id, user_id=user)
+        if has_message:
+            messages.error(request, 'You have already made message')
+            return redirect('cars:cars')
+        else:
+            message = Message(car=car, car_name=car_name, user_id=user, first_name=first_name, last_name=last_name,
+                              customer_need=customer_need, city=city, state=state, email=email, phone=phone,
+                              message=message)
+            message.save()
+            messages.success(request, 'Your request has been submitted, we will get back to you shortly')
+            return redirect('cars:cars')
 
     return render(request, 'cars/detail.html', data)
 
