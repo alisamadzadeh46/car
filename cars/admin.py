@@ -28,3 +28,4 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'city', 'state', 'phone', 'create_data']
     list_filter = ['first_name', 'last_name', 'city', 'state', 'phone', 'create_data']
     search_fields = ['first_name', 'last_name', 'city', 'state', 'phone', 'create_data']
+    list_per_page = 15
