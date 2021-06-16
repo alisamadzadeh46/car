@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 
 from cars.models import Cars, Images
@@ -27,15 +28,16 @@ def home(request):
 
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        phone = request.POST['phone']
+        message = request.POST['message']
+        con = Contact(name=name, email=email, subject=subject, phone=phone, message=message)
+        con.save()
+        messages.success(request, 'Thank you')
     return render(request, 'home/contact.html')
-
-
-def login(request):
-    return render(request, 'home/../templates/accounts/login.html')
-
-
-def register(request):
-    return render(request, 'home/../templates/accounts/register.html')
 
 
 def about(request):
