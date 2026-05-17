@@ -1,118 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Car Dealership — Django Project</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--red:#e63946;--black:#080808;--dark:#101010;--card:#141414;--gray:#666;--light:#f0f0f0;}
+
+[data-theme="dark"]{
+  --bg:#080808;
+  --bg2:#101010;
+  --card:#141414;
+  --border:#1a1a1a;
+  --border2:#2a2a2a;
+  --text:#ffffff;
+  --text2:#888888;
+  --text3:#444444;
+  --red:#e63946;
+  --red2:#c1121f;
+  --grid:rgba(255,255,255,0.04);
+  --code:#0d0d0d;
+  --num:#1a1a1a;
+}
+[data-theme="light"]{
+  --bg:#f8f6f2;
+  --bg2:#eeece8;
+  --card:#ffffff;
+  --border:#e0ddd8;
+  --border2:#cccccc;
+  --text:#111111;
+  --text2:#666666;
+  --text3:#bbbbbb;
+  --red:#e63946;
+  --red2:#c1121f;
+  --grid:rgba(0,0,0,0.05);
+  --code:#f0ede8;
+  --num:#eeece8;
+}
+
 html{scroll-behavior:smooth;}
-body{background:var(--black);color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;transition:background .3s,color .3s;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 6%;display:flex;justify-content:space-between;align-items:center;background:rgba(8,8,8,0.97);border-bottom:1px solid #1a1a1a;}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:4px;color:#fff;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 6%;display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:4px;color:var(--text);}
 .logo span{color:var(--red);}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:var(--gray);text-decoration:none;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;transition:.3s;}
-.nav-links a:hover{color:#fff;}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;transition:.3s;}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-toggle{background:var(--card);border:1px solid var(--border);color:var(--text2);width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:.3s;}
+.theme-toggle:hover{border-color:var(--border2);color:var(--text);}
 .nav-cta{background:var(--red);color:#fff;padding:.45rem 1.2rem;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:.3s;}
-.nav-cta:hover{background:#c1121f;}
+.nav-cta:hover{background:var(--red2);}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;padding:0 6%;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#080808 50%,#1a0305 100%);z-index:0;}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(#1a1a1a 1px,transparent 1px),linear-gradient(90deg,#1a1a1a 1px,transparent 1px);background-size:60px 60px;opacity:.3;z-index:0;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:60px 60px;z-index:0;}
+.hero-glow{position:absolute;top:20%;right:10%;width:500px;height:500px;background:radial-gradient(circle,rgba(230,57,70,.08) 0%,transparent 70%);z-index:0;pointer-events:none;}
 .hero-content{position:relative;z-index:1;max-width:700px;}
-.hero-badge{display:inline-block;background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.3);color:var(--red);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:.4rem 1rem;margin-bottom:2rem;}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,11vw,10rem);line-height:.9;letter-spacing:3px;margin-bottom:2rem;}
+.hero-badge{display:inline-block;background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.25);color:var(--red);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:.4rem 1rem;margin-bottom:2rem;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,11vw,10rem);line-height:.9;letter-spacing:3px;margin-bottom:2rem;color:var(--text);}
 .hero h1 em{color:var(--red);font-style:normal;}
-.hero p{color:var(--gray);font-size:1rem;line-height:1.8;max-width:480px;margin-bottom:3rem;}
+.hero p{color:var(--text2);font-size:1rem;line-height:1.8;max-width:480px;margin-bottom:3rem;}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
 .btn-red{background:var(--red);color:#fff;padding:.85rem 2.5rem;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:.3s;display:inline-block;}
-.btn-red:hover{background:#c1121f;}
-.btn-ghost{border:1px solid #2a2a2a;color:#fff;padding:.85rem 2.5rem;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:.3s;display:inline-block;}
-.btn-ghost:hover{border-color:#444;}
-.hero-stats{display:flex;gap:3rem;margin-top:5rem;padding-top:2rem;border-top:1px solid #1a1a1a;}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:#fff;line-height:1;}
-.stat-l{font-size:.7rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:.2rem;}
+.btn-red:hover{background:var(--red2);}
+.btn-ghost{border:1px solid var(--border2);color:var(--text);padding:.85rem 2.5rem;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:.3s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--text2);}
+.hero-stats{display:flex;gap:3rem;margin-top:5rem;padding-top:2rem;border-top:1px solid var(--border);}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--text);line-height:1;}
+.stat-l{font-size:.7rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-top:.2rem;}
+
+/* SECTIONS */
+section{padding:6rem 6%;}
+.section-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:.8rem;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:2px;margin-bottom:1rem;color:var(--text);}
+.section-sub{color:var(--text2);font-size:.9rem;line-height:1.7;max-width:500px;margin-bottom:4rem;}
 
 /* SCREENSHOTS */
-.screenshots{padding:6rem 6%;}
-.section-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:.8rem;}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:2px;margin-bottom:1rem;}
-.section-sub{color:var(--gray);font-size:.9rem;line-height:1.7;max-width:500px;margin-bottom:4rem;}
-
-/* MAIN SCREENSHOT */
-.main-shot{position:relative;margin-bottom:2rem;overflow:hidden;border:1px solid #1a1a1a;}
+.main-shot{position:relative;margin-bottom:2rem;overflow:hidden;border:1px solid var(--border);cursor:pointer;}
 .main-shot img{width:100%;height:500px;object-fit:cover;object-position:top;display:block;transition:.6s ease;}
 .main-shot:hover img{object-position:center;}
-.main-shot-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,.95));padding:2rem 1.5rem 1.2rem;}
-.main-shot-label h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:.3rem;}
-.main-shot-label p{font-size:.8rem;color:var(--gray);}
+.main-shot-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.9));padding:2rem 1.5rem 1.2rem;}
+.main-shot-label h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:.3rem;color:#fff;}
+.main-shot-label p{font-size:.8rem;color:rgba(255,255,255,.6);}
 .main-shot-badge{position:absolute;top:1rem;left:1rem;background:var(--red);color:#fff;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:.3rem .8rem;}
 
-/* GRID SHOTS */
 .shots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;}
-.shot-card{position:relative;overflow:hidden;border:1px solid #1a1a1a;cursor:pointer;transition:.3s;}
-.shot-card:hover{border-color:#333;transform:translateY(-3px);}
+.shot-card{position:relative;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:.3s;background:var(--card);}
+.shot-card:hover{border-color:var(--border2);transform:translateY(-3px);}
 .shot-card img{width:100%;height:200px;object-fit:cover;object-position:top;display:block;transition:.5s ease;}
 .shot-card:hover img{object-position:center;}
-.shot-info{padding:1rem 1.2rem;background:var(--card);}
-.shot-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;margin-bottom:.2rem;}
-.shot-desc{font-size:.75rem;color:var(--gray);}
+.shot-info{padding:1rem 1.2rem;}
+.shot-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;margin-bottom:.2rem;color:var(--text);}
+.shot-desc{font-size:.75rem;color:var(--text2);}
 .shot-dot{width:6px;height:6px;background:var(--red);border-radius:50%;display:inline-block;margin-right:.5rem;}
 
 /* LIGHTBOX */
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;display:none;align-items:center;justify-content:center;padding:2rem;}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:1000;display:none;align-items:center;justify-content:center;padding:2rem;}
 .lightbox.active{display:flex;}
-.lightbox img{max-width:90%;max-height:90vh;object-fit:contain;}
-.lb-close{position:absolute;top:1.5rem;right:1.5rem;color:#fff;font-size:1.5rem;cursor:pointer;background:rgba(255,255,255,.1);width:40px;height:40px;display:flex;align-items:center;justify-content:center;transition:.3s;}
+.lightbox img{max-width:90%;max-height:85vh;object-fit:contain;}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;color:#fff;font-size:1.2rem;cursor:pointer;background:rgba(255,255,255,.1);width:40px;height:40px;display:flex;align-items:center;justify-content:center;transition:.3s;}
 .lb-close:hover{background:var(--red);}
 .lb-label{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);text-align:center;}
-.lb-label h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;}
-.lb-label p{color:var(--gray);font-size:.8rem;}
+.lb-label h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:#fff;}
+.lb-label p{color:rgba(255,255,255,.5);font-size:.8rem;}
 
-/* TECH STACK */
-.tech{padding:6rem 6%;background:var(--dark);}
-.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;border:1px solid #1a1a1a;margin-top:3rem;}
-.tech-item{padding:2rem;border:1px solid #1a1a1a;transition:.3s;text-align:center;}
-.tech-item:hover{background:#1a1a1a;}
+/* TECH */
+.bg2{background:var(--bg2);}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:3rem;}
+.tech-item{padding:2rem;background:var(--bg2);transition:.3s;text-align:center;}
+.tech-item:hover{background:var(--card);}
 .tech-icon{font-size:2.5rem;margin-bottom:1rem;}
-.tech-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;margin-bottom:.3rem;}
-.tech-desc{font-size:.75rem;color:var(--gray);}
+.tech-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;margin-bottom:.3rem;color:var(--text);}
+.tech-desc{font-size:.75rem;color:var(--text2);}
 
 /* FEATURES */
-.features{padding:6rem 6%;}
 .features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:3rem;}
-.feature-card{padding:2rem;border:1px solid #1a1a1a;transition:.3s;position:relative;overflow:hidden;}
+.feature-card{padding:2rem;border:1px solid var(--border);transition:.3s;position:relative;overflow:hidden;background:var(--card);}
 .feature-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--red);transition:.3s;}
 .feature-card:hover::before{height:100%;}
-.feature-card:hover{border-color:#2a2a2a;}
-.feature-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#1a1a1a;position:absolute;top:.5rem;right:1rem;line-height:1;}
-.feature-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;margin-bottom:.5rem;}
-.feature-text{font-size:.8rem;color:var(--gray);line-height:1.7;}
+.feature-card:hover{border-color:var(--border2);}
+.feature-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--num);position:absolute;top:.5rem;right:1rem;line-height:1;}
+.feature-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;margin-bottom:.5rem;color:var(--text);}
+.feature-text{font-size:.8rem;color:var(--text2);line-height:1.7;}
 
 /* INSTALL */
-.install{padding:6rem 6%;background:var(--dark);}
-.code-block{background:#0d0d0d;border:1px solid #1a1a1a;padding:2rem;margin-top:2rem;font-family:'DM Mono',monospace,sans-serif;}
-.code-line{display:flex;gap:1rem;margin-bottom:.8rem;font-size:.85rem;}
+.code-block{background:var(--code);border:1px solid var(--border);padding:2rem;margin-top:2rem;}
+.code-line{display:flex;gap:1rem;margin-bottom:.8rem;font-size:.85rem;font-family:monospace;}
 .code-line:last-child{margin-bottom:0;}
 .code-prompt{color:var(--red);user-select:none;}
-.code-cmd{color:#e0e0e0;}
-.code-comment{color:#444;}
+.code-cmd{color:var(--text);}
+.code-comment{color:var(--text3);}
 
 /* FOOTER */
-footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;}
+footer{padding:3rem 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;color:var(--text);}
 .footer-logo span{color:var(--red);}
 .footer-links{display:flex;gap:1.5rem;}
-.footer-links a{color:var(--gray);text-decoration:none;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;transition:.3s;}
-.footer-links a:hover{color:#fff;}
-.footer-copy{color:var(--gray);font-size:.75rem;}
+.footer-links a{color:var(--text2);text-decoration:none;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;transition:.3s;}
+.footer-links a:hover{color:var(--text);}
+.footer-copy{color:var(--text2);font-size:.75rem;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .fade{animation:fadeUp .8s ease forwards;opacity:0;}
@@ -122,7 +153,7 @@ footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content
 .fade-4{animation-delay:.4s;}
 
 @media(max-width:768px){
-  .nav-links,.nav-cta{display:none;}
+  .nav-links{display:none;}
   .hero-stats{gap:1.5rem;}
   .main-shot img{height:250px;}
 }
@@ -138,15 +169,18 @@ footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content
     <li><a href="#features">Features</a></li>
     <li><a href="#install">Install</a></li>
   </ul>
-  <a href="https://github.com/alisamadzadeh46/car" class="nav-cta" target="_blank">View on GitHub</a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <a href="https://github.com/alisamadzadeh46/car" class="nav-cta" target="_blank">GitHub</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-badge fade fade-1">Django 5.2 · Full Stack Project</div>
+    <div class="hero-badge fade fade-1">Django · Full Stack Project</div>
     <h1 class="fade fade-2">CAR<br><em>ZONE</em></h1>
     <p class="fade fade-3">A full-featured car dealership web platform with advanced search & filtering, multi-image galleries, inquiry messaging, and a clean Bootstrap frontend.</p>
     <div class="hero-btns fade fade-4">
@@ -156,18 +190,17 @@ footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content
     <div class="hero-stats fade fade-4">
       <div><div class="stat-n">10+</div><div class="stat-l">Pages</div></div>
       <div><div class="stat-n">5</div><div class="stat-l">Django Apps</div></div>
-      <div><div class="stat-n">Django<br>5.2</div><div class="stat-l">Framework</div></div>
+      <div><div class="stat-n">5.2</div><div class="stat-l">Django</div></div>
     </div>
   </div>
 </section>
 
 <!-- SCREENSHOTS -->
-<section class="screenshots" id="screenshots">
+<section id="screenshots">
   <div class="section-label">Live Preview</div>
   <h2 class="section-title">PROJECT SCREENSHOTS</h2>
   <p class="section-sub">Real screenshots from the running Django application — every page fully functional and connected to the database.</p>
 
-  <!-- Main screenshot -->
   <div class="main-shot" onclick="openLightbox('screenshots/cars.png','Car Inventory','Browse and filter all available vehicles')">
     <img src="screenshots/cars.png" alt="Car Inventory Page">
     <div class="main-shot-badge">Main Page</div>
@@ -177,7 +210,6 @@ footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content
     </div>
   </div>
 
-  <!-- Grid -->
   <div class="shots-grid">
     <div class="shot-card" onclick="openLightbox('screenshots/detail.png','Car Detail','Full car specs, gallery and inquiry form')">
       <img src="screenshots/detail.png" alt="Car Detail">
@@ -228,93 +260,37 @@ footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content
 </div>
 
 <!-- TECH STACK -->
-<section class="tech" id="stack">
+<section class="bg2" id="stack">
   <div class="section-label">Built With</div>
   <h2 class="section-title">TECH STACK</h2>
   <div class="tech-grid">
-    <div class="tech-item">
-      <div class="tech-icon">🐍</div>
-      <div class="tech-name">Python 3.14</div>
-      <div class="tech-desc">Core language</div>
-    </div>
-    <div class="tech-item">
-      <div class="tech-icon">🎸</div>
-      <div class="tech-name">Django 5.2</div>
-      <div class="tech-desc">Web framework</div>
-    </div>
-    <div class="tech-item">
-      <div class="tech-icon">🗄️</div>
-      <div class="tech-name">SQLite / PostgreSQL</div>
-      <div class="tech-desc">Database</div>
-    </div>
-    <div class="tech-item">
-      <div class="tech-icon">🎨</div>
-      <div class="tech-name">Bootstrap 4</div>
-      <div class="tech-desc">Frontend framework</div>
-    </div>
-    <div class="tech-item">
-      <div class="tech-icon">✍️</div>
-      <div class="tech-name">CKEditor</div>
-      <div class="tech-desc">Rich text editing</div>
-    </div>
-    <div class="tech-item">
-      <div class="tech-icon">🖼️</div>
-      <div class="tech-name">Pillow</div>
-      <div class="tech-desc">Image processing</div>
-    </div>
+    <div class="tech-item"><div class="tech-icon">🐍</div><div class="tech-name">Python 3.14</div><div class="tech-desc">Core language</div></div>
+    <div class="tech-item"><div class="tech-icon">🎸</div><div class="tech-name">Django </div><div class="tech-desc">Web framework</div></div>
+    <div class="tech-item"><div class="tech-icon">🗄️</div><div class="tech-name">SQLite / PostgreSQL</div><div class="tech-desc">Database</div></div>
+    <div class="tech-item"><div class="tech-icon">🎨</div><div class="tech-name">Bootstrap 4</div><div class="tech-desc">Frontend framework</div></div>
+    <div class="tech-item"><div class="tech-icon">✍️</div><div class="tech-name">CKEditor</div><div class="tech-desc">Rich text editing</div></div>
+    <div class="tech-item"><div class="tech-icon">🖼️</div><div class="tech-name">Pillow</div><div class="tech-desc">Image processing</div></div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="features" id="features">
+<section id="features">
   <div class="section-label">What It Does</div>
   <h2 class="section-title">FEATURES</h2>
   <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-num">01</div>
-      <div class="feature-title">Advanced Search</div>
-      <p class="feature-text">Filter by model, city, year, body style, transmission and price range with real-time results.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">02</div>
-      <div class="feature-title">Multi-Image Gallery</div>
-      <p class="feature-text">Each listing supports multiple images with a slider gallery on the detail page.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">03</div>
-      <div class="feature-title">Inquiry System</div>
-      <p class="feature-text">Registered users can send one inquiry per car. All inquiries visible in personal dashboard.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">04</div>
-      <div class="feature-title">User Auth</div>
-      <p class="feature-text">Full register, login, logout and personal dashboard for managing inquiries.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">05</div>
-      <div class="feature-title">Featured Cars</div>
-      <p class="feature-text">Mark cars as featured from admin panel. Featured cars appear prominently on homepage.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">06</div>
-      <div class="feature-title">Admin Panel</div>
-      <p class="feature-text">Full Django admin with inline image management, bulk actions, and colored status badges.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">07</div>
-      <div class="feature-title">Team Showcase</div>
-      <p class="feature-text">Manage team members from admin. Displayed on the About page with social links.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">08</div>
-      <div class="feature-title">Contact Form</div>
-      <p class="feature-text">Visitors can send messages directly. All contact submissions tracked in admin.</p>
-    </div>
+    <div class="feature-card"><div class="feature-num">01</div><div class="feature-title">Advanced Search</div><p class="feature-text">Filter by model, city, year, body style, transmission and price range.</p></div>
+    <div class="feature-card"><div class="feature-num">02</div><div class="feature-title">Multi-Image Gallery</div><p class="feature-text">Each listing supports multiple images with a slider gallery on detail page.</p></div>
+    <div class="feature-card"><div class="feature-num">03</div><div class="feature-title">Inquiry System</div><p class="feature-text">Registered users can send one inquiry per car, visible in dashboard.</p></div>
+    <div class="feature-card"><div class="feature-num">04</div><div class="feature-title">User Auth</div><p class="feature-text">Full register, login, logout and personal dashboard for managing inquiries.</p></div>
+    <div class="feature-card"><div class="feature-num">05</div><div class="feature-title">Featured Cars</div><p class="feature-text">Mark cars as featured from admin. Appear prominently on homepage.</p></div>
+    <div class="feature-card"><div class="feature-num">06</div><div class="feature-title">Admin Panel</div><p class="feature-text">Full Django admin with inline image management and bulk actions.</p></div>
+    <div class="feature-card"><div class="feature-num">07</div><div class="feature-title">Team Showcase</div><p class="feature-text">Manage team members from admin, displayed on About page.</p></div>
+    <div class="feature-card"><div class="feature-num">08</div><div class="feature-title">Contact Form</div><p class="feature-text">Visitors can send messages tracked in admin panel.</p></div>
   </div>
 </section>
 
 <!-- INSTALL -->
-<section class="install" id="install">
+<section class="bg2" id="install">
   <div class="section-label">Get Started</div>
   <h2 class="section-title">INSTALLATION</h2>
   <div class="code-block">
@@ -329,15 +305,14 @@ footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content
     <div class="code-line"><span class="code-comment"># Start the server</span></div>
     <div class="code-line"><span class="code-prompt">$</span><span class="code-cmd">python manage.py runserver</span></div>
   </div>
-  <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+  <div style="margin-top:2rem;">
     <a href="https://github.com/alisamadzadeh46/car" class="btn-red" target="_blank">View on GitHub →</a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">CAR<span>.</span>ZONE</div>
-  <div class="footer-copy">Built with Django 5.2 by <a href="https://github.com/alisamadzadeh46" style="color:var(--red);text-decoration:none;">Ali Samadzadeh</a></div>
+  <div class="footer-copy">Built with Django  by <a href="https://github.com/alisamadzadeh46" style="color:var(--red);text-decoration:none;">Ali Samadzadeh</a></div>
   <div class="footer-links">
     <a href="https://github.com/alisamadzadeh46/car" target="_blank">GitHub</a>
     <a href="#screenshots">Screenshots</a>
@@ -346,38 +321,46 @@ footer{padding:3rem 6%;border-top:1px solid #1a1a1a;display:flex;justify-content
 </footer>
 
 <script>
-function openLightbox(src, title, desc) {
+function toggleTheme(){
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+
+const saved = localStorage.getItem('theme');
+if(saved){
+  document.documentElement.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn').textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+
+function openLightbox(src, title, desc){
   document.getElementById('lb-img').src = src;
   document.getElementById('lb-title').textContent = title;
   document.getElementById('lb-desc').textContent = desc;
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-function closeLightbox() {
+function closeLightbox(){
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
 
-// Fade in on scroll
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold: 0.1});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.1});
+
 document.querySelectorAll('.feature-card,.tech-item,.shot-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity .5s ease, transform .5s ease';
-  obs.observe(el);
-});
-document.querySelectorAll('.feature-card,.tech-item,.shot-card').forEach(el => {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, {threshold: 0.1});
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity .5s ease, transform .5s ease';
   observer.observe(el);
 });
 </script>
