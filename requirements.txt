@@ -1,0 +1,6 @@
+Django
+Pillow
+django-ckeditor
+django-js-asset
+django-multiselectfield
+psycopg2-binary
