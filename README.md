@@ -1,6 +1,6 @@
 # Car Dealership 🚗
 
-> A full-featured car dealership web platform built with **Django 5.2**, featuring advanced search & filtering, multi-image galleries, inquiry messaging, and a Bootstrap 4 frontend.
+> A full-featured car dealership web platform built with **Django 6**, featuring advanced search & filtering, multi-image galleries, inquiry messaging, and a Bootstrap 4 frontend.
 
 ---
 
@@ -20,7 +20,7 @@
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | Django 5.2 |
+| Backend | Django 6 |
 | Database | SQLite (dev) / PostgreSQL (prod) |
 | Frontend | Bootstrap 4 + jQuery |
 | Rich Text | CKEditor 6 |
